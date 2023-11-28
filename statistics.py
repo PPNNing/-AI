@@ -79,7 +79,7 @@ class SynergyManager:
         return None
     def __repr__(self):
         return ", ".join([synergy.name for synergy in self.synergies])
-############################
+############################明天我继续
 class teams:
     def __init__(self):
         self.core_teams = [] #用5个列表记录5个阵容并将每个阵容的综合排名记录依次在下面的列表中
@@ -90,6 +90,9 @@ class teams:
         matching_rate = []
         max = 0
         ######
+        for i in matching_rate:########
+            if(matching_rate[max] < matching_rate[i])
+                max = i
         return self.core_teams[max],self.flex_teams[max]
 
 
