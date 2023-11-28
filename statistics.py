@@ -1,6 +1,6 @@
 import math
 import numpy
-
+#######make a try
 #level = [2,2,6,10,20,36,56,80,100]
 
 class Hero:
