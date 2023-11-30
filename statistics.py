@@ -1,7 +1,5 @@
 import math
 import numpy
-#######make a try
-#level = [2,2,6,10,20,36,56,80,100]
 
 class Hero:
     def __init__(self, name, cost, attributes, skill_type,rate):
@@ -12,11 +10,15 @@ class Hero:
         self.synergies = []
         self.weapon = []
         self.rate = rate
-        self.each_value = self.cost * (self.rate * self.rate - 5.0)
+        
+
+    def add_rate(self,rate):
+        self.rate = rate
+
     def add_synergy(self, synergy):
         if synergy not in self.synergies:
             self.synergies.append(synergy)
-            synergy.add_hero(self)
+            #synergy.add_hero(self)
 
     def get_attributes(self, stage):
         if 1 <= stage <= 3:
@@ -27,13 +29,9 @@ class Hero:
     def add_weapon(self,weapon):
         if weapon not in self.weapon:
             self.weapon.append(weapon)
-    
-    #def add_rate(self,rate):
-    #    self.rate.append(rate)
 
-    #def cal_each_value(self):
-       # self.each_value = self.cost * (self.rate * self.rate - 5.0)
-      #  return self.each_value
+    def get_cost(self):
+        return self.cost
 
     def __repr__(self):
         return f"{self.name} (Cost: {self.cost}, Skill Type: {self.skill_type})"
@@ -79,24 +77,7 @@ class SynergyManager:
         return None
     def __repr__(self):
         return ", ".join([synergy.name for synergy in self.synergies])
-############################明天我继续
-class teams:
-    def __init__(self):
-        self.core_teams = [] #用5个列表记录5个阵容并将每个阵容的综合排名记录依次在下面的列表中
-        self.flex_teams = []
-        self.teams_rate = []
 
-    def find_best_match(self,now_team):#比较已有队伍与上面那五个阵容的匹配率存入下面这个列表并取其中最大值对应的阵容返回
-        matching_rate = []
-        max = 0
-        ######
-        for i in matching_rate:########
-            if(matching_rate[max] < matching_rate[i])
-                max = i
-        return self.core_teams[max],self.flex_teams[max]
-
-
-############################
 class Low_Weapon:
     def __init__(self,name):
         self.name=name
@@ -394,8 +375,8 @@ hero_attributes_1 = {
     "power" : [0,0,0]
 }
 hero1 = Hero(name="Hero1",cost=1,attributes=hero_attributes_1,skill_type=1,rate=4.27)
-hero1.add_synergy(synergy6)
-hero1.add_synergy(synergy21)
+hero1.add_synergy(6)
+hero1.add_synergy(21)
 
 hero_attributes_2 = {
     "health" : [700,1260,2268],
@@ -409,8 +390,8 @@ hero_attributes_2 = {
     "power" : [100,100,100]
 }
 hero2 = Hero(name="Hero2",cost=1,attributes=hero_attributes_2,skill_type=1,rate=4.56)
-hero2.add_synergy(synergy11)
-hero2.add_synergy(synergy27)
+hero2.add_synergy(11)
+hero2.add_synergy(27)
 
 hero_attributes_3 = {
     "health" : [700,1260,2268],
@@ -424,8 +405,8 @@ hero_attributes_3 = {
     "power" : [80,80,80]
 }
 hero3 = Hero(name="Hero3",cost=1,attributes=hero_attributes_3,skill_type=2,rate=4.65)
-hero3.add_synergy(synergy10)
-hero3.add_synergy(synergy17)
+hero3.add_synergy(10)
+hero3.add_synergy(17)
 
 hero_attributes_4 = {
     "health" : [650,1170,2106],
@@ -439,9 +420,9 @@ hero_attributes_4 = {
     "power" : [110,110,110]
 }
 hero4 = Hero(name="Hero4",cost=1,attributes=hero_attributes_4,skill_type=1,rate=4.80)
-hero4.add_synergy(synergy15)
-hero4.add_synergy(synergy25)
-hero4.add_synergy(synergy28)
+hero4.add_synergy(15)
+hero4.add_synergy(25)
+hero4.add_synergy(28)
 
 hero_attributes_5 = {
     "health" : [500,900,1620],
@@ -455,8 +436,8 @@ hero_attributes_5 = {
     "power" : [70,70,70]
 }
 hero5 = Hero(name="Hero5",cost=1,attributes=hero_attributes_5,skill_type=3,rate=4.37)
-hero5.add_synergy(synergy1)
-hero5.add_synergy(synergy23)
+hero5.add_synergy(1)
+hero5.add_synergy(23)
 
 hero_attributes_6 = {
     "health" : [500,900,1620],
@@ -470,8 +451,8 @@ hero_attributes_6 = {
     "power" : [30,30,30]
 }
 hero6 = Hero(name="Hero6",cost=1,attributes=hero_attributes_6,skill_type=1,rate=4.57)
-hero6.add_synergy(synergy7)
-hero6.add_synergy(synergy28)
+hero6.add_synergy(7)
+hero6.add_synergy(28)
 
 hero_attributes_7 = {
     "health" : [700,1260,2268],
@@ -485,8 +466,8 @@ hero_attributes_7 = {
     "power" : [90,90,90]
 }
 hero7 = Hero(name="Hero7",cost=1,attributes=hero_attributes_7,skill_type=2,rate=4.46)
-hero7.add_synergy(synergy15)
-hero7.add_synergy(synergy19)
+hero7.add_synergy(15)
+hero7.add_synergy(19)
 
 hero_attributes_8 = {
     "health" : [500,900,1620],
@@ -500,8 +481,8 @@ hero_attributes_8 = {
     "power" : [50,50,50]
 }
 hero8 = Hero(name="Hero8",cost=1,attributes=hero_attributes_8,skill_type=1,rate=4.39)
-hero8.add_synergy(synergy13)
-hero8.add_synergy(synergy24)
+hero8.add_synergy(13)
+hero8.add_synergy(24)
 
 hero_attributes_9 = {
     "health" : [504,907,1633],
@@ -515,8 +496,8 @@ hero_attributes_9 = {
     "power" : [114,114,114]
 }
 hero9 = Hero(name="Hero9",cost=1,attributes=hero_attributes_9,skill_type=1,rate=4.32)
-hero9.add_synergy(synergy3)
-hero9.add_synergy(synergy27)
+hero9.add_synergy(3)
+hero9.add_synergy(27)
 
 hero_attributes_10 = {
     "health" : [500,900,1620],
@@ -530,8 +511,8 @@ hero_attributes_10 = {
     "power" : [30,30,30]
 }
 hero10 = Hero(name="Hero10",cost=1,attributes=hero_attributes_10,skill_type=1,rate=4.57)
-hero10.add_synergy(synergy13)
-hero10.add_synergy(synergy20)
+hero10.add_synergy(13)
+hero10.add_synergy(20)
 
 hero_attributes_11 = {
     "health" : [700,1260,2268],
@@ -545,8 +526,8 @@ hero_attributes_11 = {
     "power" : [80,80,80]
 }
 hero11 = Hero(name="Hero11",cost=1,attributes=hero_attributes_11,skill_type=3,rate=4.47)
-hero11.add_synergy(synergy7)
-hero11.add_synergy(synergy22)
+hero11.add_synergy(7)
+hero11.add_synergy(22)
 
 hero_attributes_12 = {
     "health" : [700,1260,2268],
@@ -560,9 +541,9 @@ hero_attributes_12 = {
     "power" : [80,80,80]
 }
 hero12 = Hero(name="Hero12",cost=1,attributes=hero_attributes_12,skill_type=1,rate=4.60)
-hero12.add_synergy(synergy10)
-hero12.add_synergy(synergy25)
-hero12.add_synergy(synergy26)
+hero12.add_synergy(10)
+hero12.add_synergy(25)
+hero12.add_synergy(26)
 
 hero_attributes_13 = {
     "health" : [500,900,1620],
@@ -576,8 +557,8 @@ hero_attributes_13 = {
     "power" : [70,70,70]
 }
 hero13 = Hero(name="Hero13",cost=1,attributes=hero_attributes_13,skill_type=1,rate=4.55)
-hero13.add_synergy(synergy12)
-hero13.add_synergy(synergy26)
+hero13.add_synergy(12)
+hero13.add_synergy(26)
 
 hero_attributes_14 = {
     "health" : [800,1440,2592],
@@ -591,8 +572,8 @@ hero_attributes_14 = {
     "power" : [110,110,110]
 }
 hero14 = Hero(name="Hero14",cost=2,attributes=hero_attributes_14,skill_type=2,rate=4.40)
-hero14.add_synergy(synergy11)
-hero14.add_synergy(synergy19)
+hero14.add_synergy(11)
+hero14.add_synergy(19)
 
 hero_attributes_15 = {
     "health" : [700,1260,2268],
@@ -606,8 +587,8 @@ hero_attributes_15 = {
     "power" : [90,90,90]
 }
 hero15 = Hero(name="Hero15",cost=2,attributes=hero_attributes_15,skill_type=3,rate=4.42)
-hero15.add_synergy(synergy1)
-hero15.add_synergy(synergy26)
+hero15.add_synergy(1)
+hero15.add_synergy(26)
 
 hero_attributes_16 = {
     "health" : [800,1440,2592],
@@ -621,8 +602,8 @@ hero_attributes_16 = {
     "power" : [90,90,90]
 }
 hero16 = Hero(name="Hero16",cost=2,attributes=hero_attributes_16,skill_type=1,rate=4.50)
-hero16.add_synergy(synergy5)
-hero16.add_synergy(synergy20)
+hero16.add_synergy(5)
+hero16.add_synergy(20)
 
 hero_attributes_17 = {
     "health" : [600,1080,1944],
@@ -636,8 +617,8 @@ hero_attributes_17 = {
     "power" : [70,70,70]
 }
 hero17 = Hero(name="Hero17",cost=2,attributes=hero_attributes_17,skill_type=1,rate=4.35)
-hero17.add_synergy(synergy13)
-hero17.add_synergy(synergy16)
+hero17.add_synergy(13)
+hero17.add_synergy(16)
 
 hero_attributes_18 = {
     "health" : [800,1440,2592],
@@ -651,8 +632,8 @@ hero_attributes_18 = {
     "power" : [100,100,100]
 }
 hero18 = Hero(name="Hero18",cost=2,attributes=hero_attributes_18,skill_type=1,rate=4.61)
-hero18.add_synergy(synergy3)
-hero18.add_synergy(synergy17)
+hero18.add_synergy(3)
+hero18.add_synergy(17)
 
 hero_attributes_19 = {
     "health" : [800,1440,2592],
@@ -666,8 +647,8 @@ hero_attributes_19 = {
     "power" : [135,135,135]
 }
 hero19 = Hero(name="Hero19",cost=2,attributes=hero_attributes_19,skill_type=2,rate=4.45)
-hero19.add_synergy(synergy13)
-hero19.add_synergy(synergy28)
+hero19.add_synergy(13)
+hero19.add_synergy(28)
 
 hero_attributes_20 = {
     "health" : [550,990,1782],
@@ -681,9 +662,9 @@ hero_attributes_20 = {
     "power" : [60,60,60]
 }
 hero20 = Hero(name="Hero20",cost=2,attributes=hero_attributes_20,skill_type=3,rate=4.79)
-hero20.add_synergy(synergy7)
-hero20.add_synergy(synergy21)
-hero20.add_synergy(synergy27)
+hero20.add_synergy(7)
+hero20.add_synergy(21)
+hero20.add_synergy(27)
 
 hero_attributes_21 = {
     "health" : [600,1080,1944],
@@ -697,8 +678,8 @@ hero_attributes_21 = {
     "power" : [70,70,70]
 }
 hero21 = Hero(name="Hero21",cost=2,attributes=hero_attributes_21,skill_type=1,rate=4.49)
-hero21.add_synergy(synergy10)
-hero21.add_synergy(synergy23)
+hero21.add_synergy(10)
+hero21.add_synergy(23)
 
 hero_attributes_22 = {
     "health" : [800,1440,2592],
@@ -712,8 +693,8 @@ hero_attributes_22 = {
     "power" : [80,80,80]
 }
 hero22 = Hero(name="Hero22",cost=2,attributes=hero_attributes_22,skill_type=2,rate=4.76)
-hero22.add_synergy(synergy10)
-hero22.add_synergy(synergy21)
+hero22.add_synergy(10)
+hero22.add_synergy(21)
 
 hero_attributes_23 = {
     "health" : [750,1350,2430],
@@ -727,9 +708,9 @@ hero_attributes_23 = {
     "power" : [50,50,50]
 }
 hero23 = Hero(name="Hero23",cost=2,attributes=hero_attributes_23,skill_type=1,rate=4.68)
-hero23.add_synergy(synergy11)
-hero23.add_synergy(synergy25)
-hero23.add_synergy(synergy20)
+hero23.add_synergy(11)
+hero23.add_synergy(25)
+hero23.add_synergy(20)
 
 hero_attributes_24 = {
     "health" : [650,1170,2106],
@@ -743,8 +724,8 @@ hero_attributes_24 = {
     "power" : [100,100,100]
 }
 hero24 = Hero(name="Hero24",cost=2,attributes=hero_attributes_24,skill_type=3,rate=4.71)
-hero24.add_synergy(synergy15)
-hero24.add_synergy(synergy24)
+hero24.add_synergy(15)
+hero24.add_synergy(24)
 
 hero_attributes_25 = {
     "health" : [550,990,1782],
@@ -758,8 +739,8 @@ hero_attributes_25 = {
     "power" : [75,75,75]
 }
 hero25 = Hero(name="Hero25",cost=2,attributes=hero_attributes_25,skill_type=1,rate=4.61)
-hero25.add_synergy(synergy9)
-hero25.add_synergy(synergy22)
+hero25.add_synergy(9)
+hero25.add_synergy(22)
 
 hero_attributes_26 = {
     "health" : [800,1440,2592],
@@ -773,8 +754,8 @@ hero_attributes_26 = {
     "power" : [110,110,110]
 }
 hero26 = Hero(name="Hero26",cost=2,attributes=hero_attributes_26,skill_type=1,rate=4.45)
-hero26.add_synergy(synergy12)
-hero26.add_synergy(synergy24)
+hero26.add_synergy(12)
+hero26.add_synergy(24)
 
 hero_attributes_27 = {
     "health" : [700,1260,2268],
@@ -788,8 +769,8 @@ hero_attributes_27 = {
     "power" : [80,80,80]
 }
 hero27 = Hero(name="Hero27",cost=3,attributes=hero_attributes_27,skill_type=1,rate=4.27)
-hero27.add_synergy(synergy3)
-hero27.add_synergy(synergy20)
+hero27.add_synergy(3)
+hero27.add_synergy(20)
 
 hero_attributes_28 = {
     "health" : [700,1260,2268],
@@ -803,8 +784,8 @@ hero_attributes_28 = {
     "power" : [50,50,50]
 }
 hero28 = Hero(name="Hero28",cost=3,attributes=hero_attributes_28,skill_type=1,rate=4.27)
-hero28.add_synergy(synergy9)
-hero28.add_synergy(synergy23)
+hero28.add_synergy(9)
+hero28.add_synergy(23)
 
 hero_attributes_29 = {
     "health" : [800,1440,2592],
@@ -818,8 +799,8 @@ hero_attributes_29 = {
     "power" : [65,65,65]
 }
 hero29 = Hero(name="Hero29",cost=3,attributes=hero_attributes_29,skill_type=2,rate=4.51)
-hero29.add_synergy(synergy6)
-hero29.add_synergy(synergy28)
+hero29.add_synergy(6)
+hero29.add_synergy(28)
 
 hero_attributes_30 = {
     "health" : [800,1440,2592],
@@ -833,8 +814,8 @@ hero_attributes_30 = {
     "power" : [80,80,80]
 }
 hero30 = Hero(name="Hero30",cost=3,attributes=hero_attributes_30,skill_type=1,rate=4.49)
-hero30.add_synergy(synergy11)
-hero30.add_synergy(synergy26)
+hero30.add_synergy(11)
+hero30.add_synergy(26)
 
 
 hero_attributes_31 = {
@@ -849,8 +830,8 @@ hero_attributes_31 = {
     "power" : [90,90,90]
 }
 hero31 = Hero(name="Hero31",cost=3,attributes=hero_attributes_31,skill_type=1,rate=4.50)
-hero31.add_synergy(synergy1)
-hero31.add_synergy(synergy19)
+hero31.add_synergy(1)
+hero31.add_synergy(19)
 
 hero_attributes_32 = {
     "health" : [700,1260,2268],
@@ -864,8 +845,8 @@ hero_attributes_32 = {
     "power" : [80,80,80]
 }
 hero32 = Hero(name="Hero32",cost=3,attributes=hero_attributes_32,skill_type=3,rate=4.64)
-hero32.add_synergy(synergy5)
-hero32.add_synergy(synergy22)
+hero32.add_synergy(5)
+hero32.add_synergy(22)
 
 hero_attributes_33 = {
     "health" : [700,1260,2268],
@@ -879,8 +860,8 @@ hero_attributes_33 = {
     "power" : [60,60,60]
 }
 hero33 = Hero(name="Hero33",cost=3,attributes=hero_attributes_33,skill_type=1,rate=4.36)
-hero33.add_synergy(synergy8)
-hero33.add_synergy(synergy21)
+hero33.add_synergy(8)
+hero33.add_synergy(21)
 
 hero_attributes_34 = {
     "health" : [800,1440,2592],
@@ -894,9 +875,9 @@ hero_attributes_34 = {
     "power" : [45,45,45]
 }
 hero34 = Hero(name="Hero34",cost=3,attributes=hero_attributes_34,skill_type=1,rate=4.55)
-hero34.add_synergy(synergy15)
-hero34.add_synergy(synergy21)
-hero34.add_synergy(synergy26)
+hero34.add_synergy(15)
+hero34.add_synergy(21)
+hero34.add_synergy(26)
 
 hero_attributes_35 = {
     "health" : [800,1440,2592],
@@ -910,8 +891,8 @@ hero_attributes_35 = {
     "power" : [70,70,70]
 }
 hero35 = Hero(name="Hero35",cost=3,attributes=hero_attributes_35,skill_type=1,rate=4.55)
-hero35.add_synergy(synergy3)
-hero35.add_synergy(synergy16)
+hero35.add_synergy(3)
+hero35.add_synergy(16)
 
 hero_attributes_36 = {
     "health" : [650,1170,2106],
@@ -925,9 +906,9 @@ hero_attributes_36 = {
     "power" : [60,60,60]
 }
 hero36 = Hero(name="Hero36",cost=3,attributes=hero_attributes_36,skill_type=1,rate=4.42)
-hero36.add_synergy(synergy10)
-hero36.add_synergy(synergy25)
-hero36.add_synergy(synergy28)
+hero36.add_synergy(10)
+hero36.add_synergy(25)
+hero36.add_synergy(28)
 
 hero_attributes_37 = {
     "health" : [950,1710,3078],
@@ -941,8 +922,8 @@ hero_attributes_37 = {
     "power" : [140,140,140]
 }
 hero37 = Hero(name="Hero37",cost=3,attributes=hero_attributes_37,skill_type=3,rate=4.56)
-hero37.add_synergy(synergy6)
-hero37.add_synergy(synergy16)
+hero37.add_synergy(6)
+hero37.add_synergy(16)
 
 hero_attributes_38 = {
     "health" : [800,1440,2592],
@@ -956,9 +937,9 @@ hero_attributes_38 = {
     "power" : [120,120,120]
 }
 hero38 = Hero(name="Hero38",cost=3,attributes=hero_attributes_38,skill_type=3,rate=4.63)
-hero38.add_synergy(synergy12)
-hero38.add_synergy(synergy19)
-hero38.add_synergy(synergy17)
+hero38.add_synergy(12)
+hero38.add_synergy(19)
+hero38.add_synergy(17)
 
 hero_attributes_39 = {
     "health" : [700,1260,2268],
@@ -972,9 +953,9 @@ hero_attributes_39 = {
     "power" : [90,90,90]
 }
 hero39 = Hero(name="Hero39",cost=3,attributes=hero_attributes_39,skill_type=1,rate=4.34)
-hero39.add_synergy(synergy12)
-hero39.add_synergy(synergy27)
-hero39.add_synergy(synergy20)
+hero39.add_synergy(12)
+hero39.add_synergy(27)
+hero39.add_synergy(20)
 
 hero_attributes_40 = {
     "health" : [1000,1800,3240],
@@ -988,8 +969,8 @@ hero_attributes_40 = {
     "power" : [180,180,180]
 }
 hero40 = Hero(name="Hero40",cost=4,attributes=hero_attributes_40,skill_type=1,rate=4.35)
-hero40.add_synergy(synergy7)
-hero40.add_synergy(synergy22)
+hero40.add_synergy(7)
+hero40.add_synergy(22)
 
 hero_attributes_41 = {
     "health" : [1000,1800,3240],
@@ -1003,8 +984,8 @@ hero_attributes_41 = {
     "power" : [150,150,150]
 }
 hero41 = Hero(name="Hero41",cost=4,attributes=hero_attributes_41,skill_type=2,rate=4.60)
-hero41.add_synergy(synergy11)
-hero41.add_synergy(synergy16)
+hero41.add_synergy(11)
+hero41.add_synergy(16)
 
 hero_attributes_42 = {
     "health" : [1000,1800,3240],
@@ -1018,8 +999,8 @@ hero_attributes_42 = {
     "power" : [170,170,170]
 }
 hero42 = Hero(name="Hero42",cost=4,attributes=hero_attributes_42,skill_type=3,rate=4.36)
-hero42.add_synergy(synergy6)
-hero42.add_synergy(synergy20)
+hero42.add_synergy(6)
+hero42.add_synergy(20)
 
 hero_attributes_43 = {
     "health" : [1100,1980,3564],
@@ -1033,8 +1014,8 @@ hero_attributes_43 = {
     "power" : [120,120,120]
 }
 hero43 = Hero(name="Hero43",cost=4,attributes=hero_attributes_43,skill_type=2,rate=4.52)
-hero43.add_synergy(synergy1)
-hero43.add_synergy(synergy24)
+hero43.add_synergy(1)
+hero43.add_synergy(24)
 
 hero_attributes_44 = {
     "health" : [850,1530,2754],
@@ -1048,8 +1029,8 @@ hero_attributes_44 = {
     "power" : [120,120,120]
 }
 hero44 = Hero(name="Hero40",cost=4,attributes=hero_attributes_44,skill_type=1,rate=4.42)
-hero44.add_synergy(synergy7)
-hero44.add_synergy(synergy26)
+hero44.add_synergy(7)
+hero44.add_synergy(26)
 
 hero_attributes_45 = {
     "health" : [750,1350,2430],
@@ -1063,8 +1044,8 @@ hero_attributes_45 = {
     "power" : [50,50,50]
 }
 hero45 = Hero(name="Hero45",cost=4,attributes=hero_attributes_45,skill_type=1,rate=4.55)
-hero45.add_synergy(synergy12)
-hero45.add_synergy(synergy23)
+hero45.add_synergy(12)
+hero45.add_synergy(23)
 
 hero_attributes_46 = {
     "health" : [750,1350,2430],
@@ -1078,9 +1059,9 @@ hero_attributes_46 = {
     "power" : [100,100,100]
 }
 hero46 = Hero(name="Hero46",cost=4,attributes=hero_attributes_46,skill_type=1,rate=4.43)
-hero46.add_synergy(synergy6)
-hero46.add_synergy(synergy18)
-hero46.add_synergy(synergy16)
+hero46.add_synergy(6)
+hero46.add_synergy(18)
+hero46.add_synergy(16)
 
 hero_attributes_47 = {
     "health" : [850,1530,2754],
@@ -1094,8 +1075,8 @@ hero_attributes_47 = {
     "power" : [160,160,160]
 }
 hero47 = Hero(name="Hero47",cost=4,attributes=hero_attributes_47,skill_type=1,rate=4.29)
-hero47.add_synergy(synergy10)
-hero47.add_synergy(synergy21)
+hero47.add_synergy(10)
+hero47.add_synergy(21)
 
 hero_attributes_48 = {
     "health" : [1000,1800,3240],
@@ -1109,8 +1090,8 @@ hero_attributes_48 = {
     "power" : [80,80,80]
 }
 hero48 = Hero(name="Hero48",cost=4,attributes=hero_attributes_48,skill_type=1,rate=4.30)
-hero48.add_synergy(synergy5)
-hero48.add_synergy(synergy27)
+hero48.add_synergy(5)
+hero48.add_synergy(27)
 
 hero_attributes_49 = {
     "health" : [950,1710,3078],
@@ -1124,8 +1105,8 @@ hero_attributes_49 = {
     "power" : [60,60,60]
 }
 hero49 = Hero(name="Hero49",cost=4,attributes=hero_attributes_49,skill_type=1,rate=4.41)
-hero49.add_synergy(synergy11)
-hero49.add_synergy(synergy19)
+hero49.add_synergy(11)
+hero49.add_synergy(19)
 
 hero_attributes_50 = {
     "health" : [750,1350,2430],
@@ -1139,8 +1120,8 @@ hero_attributes_50 = {
     "power" : [50,50,50]
 }
 hero50 = Hero(name="Hero50",cost=4,attributes=hero_attributes_50,skill_type=3,rate=4.20)
-hero50.add_synergy(synergy5)
-hero50.add_synergy(synergy17)
+hero50.add_synergy(5)
+hero50.add_synergy(17)
 
 hero_attributes_51 = {
     "health" : [750,1350,2430],
@@ -1154,8 +1135,8 @@ hero_attributes_51 = {
     "power" : [100,100,100]
 }
 hero51 = Hero(name="Hero51",cost=4,attributes=hero_attributes_51,skill_type=1,rate=4.34)
-hero51.add_synergy(synergy3)
-hero51.add_synergy(synergy28)
+hero51.add_synergy(3)
+hero51.add_synergy(28)
 
 hero_attributes_52 = {
     "health" : [1111,2000,3600],
@@ -1169,9 +1150,9 @@ hero_attributes_52 = {
     "power" : [0,0,0]
 }
 hero52 = Hero(name="Hero52",cost=4,attributes=hero_attributes_52,skill_type=3,rate=4.15)
-hero52.add_synergy(synergy15)
-hero52.add_synergy(synergy18)
-hero52.add_synergy(synergy16)
+hero52.add_synergy(15)
+hero52.add_synergy(18)
+hero52.add_synergy(16)
 
 hero_attributes_53 = {
     "health" : [900,1620,2916],
@@ -1185,8 +1166,8 @@ hero_attributes_53 = {
     "power" : [160,160,160]
 }
 hero53 = Hero(name="Hero53",cost=5,attributes=hero_attributes_53,skill_type=1,rate=4.04)
-hero53.add_synergy(synergy4)
-hero53.add_synergy(synergy21)
+hero53.add_synergy(4)
+hero53.add_synergy(21)
 
 hero_attributes_54 = {
     "health" : [750,1350,2430],
@@ -1200,9 +1181,9 @@ hero_attributes_54 = {
     "power" : [140,140,140]
 }
 hero54 = Hero(name="Hero54",cost=5,attributes=hero_attributes_54,skill_type=1,rate=4.23)
-hero54.add_synergy(synergy11)
-hero54.add_synergy(synergy20)
-hero54.add_synergy(synergy28)
+hero54.add_synergy(11)
+hero54.add_synergy(20)
+hero54.add_synergy(28)
 
 hero_attributes_55 = {
     "health" : [850,1530,2754],
@@ -1216,8 +1197,8 @@ hero_attributes_55 = {
     "power" : [50,50,50]
 }
 hero55 = Hero(name="Hero55",cost=5,attributes=hero_attributes_55,skill_type=1,rate=3.84)
-hero55.add_synergy(synergy8)
-hero55.add_synergy(synergy22)
+hero55.add_synergy(8)
+hero55.add_synergy(22)
 
 hero_attributes_56 = {
     "health" : [1100,1980,3564],
@@ -1231,9 +1212,9 @@ hero_attributes_56 = {
     "power" : [70,70,70]
 }
 hero56 = Hero(name="Hero56",cost=5,attributes=hero_attributes_56,skill_type=1,rate=4.16)
-hero56.add_synergy(synergy12)
-hero56.add_synergy(synergy19)
-hero56.add_synergy(synergy29)
+hero56.add_synergy(12)
+hero56.add_synergy(19)
+hero56.add_synergy(29)
 
 hero_attributes_57 = {
     "health" : [900,1620,2916],
@@ -1247,8 +1228,8 @@ hero_attributes_57 = {
     "power" : [50,50,50]
 }
 hero57 = Hero(name="Hero57",cost=5,attributes=hero_attributes_57,skill_type=1,rate=3.80)
-hero57.add_synergy(synergy2)
-hero57.add_synergy(synergy23)
+hero57.add_synergy(2)
+hero57.add_synergy(23)
 
 hero_attributes_58 = {
     "health" : [1000,1800,3240],
@@ -1262,8 +1243,8 @@ hero_attributes_58 = {
     "power" : [180,180,180]
 }
 hero58 = Hero(name="Hero58",cost=5,attributes=hero_attributes_58,skill_type=1,rate=3.95)
-hero58.add_synergy(synergy9)
-hero58.add_synergy(synergy24)
+hero58.add_synergy(9)
+hero58.add_synergy(24)
 
 hero_attributes_59 = {
     "health" : [1000,1800,3240],
@@ -1277,8 +1258,8 @@ hero_attributes_59 = {
     "power" : [70,70,70]
 }
 hero59 = Hero(name="Hero59",cost=5,attributes=hero_attributes_59,skill_type=3,rate=4.25)
-hero59.add_synergy(synergy15)
-hero59.add_synergy(synergy17)
+hero59.add_synergy(15)
+hero59.add_synergy(17)
 
 hero_attributes_60 = {
     "health" : [1200,2160,3888],
@@ -1292,5 +1273,178 @@ hero_attributes_60 = {
     "power" : [150,150,150]
 }
 hero60 = Hero(name="Hero60",cost=5,attributes=hero_attributes_60,skill_type=1,rate=4.00)
-hero60.add_synergy(synergy14)
-hero60.add_synergy(synergy27)
+hero60.add_synergy(14)
+hero60.add_synergy(27)
+######################
+Heros = [hero1,hero1,hero2,hero3,hero4,hero5,hero6,hero7,hero8,hero9,hero10,
+         hero11,hero12,hero13,hero14,hero15,hero16,hero17,hero18,hero19,hero20,
+         hero21,hero22,hero23,hero24,hero25,hero26,hero27,hero28,hero29,hero30,
+         hero31,hero32,hero33,hero34,hero35,hero36,hero37,hero38,hero39,hero40,
+         hero41,hero42,hero43,hero44,hero45,hero46,hero47,hero48,hero49,hero50,
+         hero51,hero52,hero53,hero54,hero55,hero56,hero57,hero58,hero59,hero60]
+############################
+#########################
+team1 = [[]] #[[序号，数量，core(1)/flex(0)],]
+team2 = [[]]
+team3 = [[]]
+class find_team:
+    def __init__(self):
+        self.teams = [team1,team2,team3]
+        self.matching_rate = []
+
+    def find_best_match(self,now_team):#now_team:[61个数量]
+        for team in self.teams:
+            temp = 0
+            for role in team:
+                if role[2] == 1:
+                    temp = temp + now_team[role[0]] * 2
+                else:
+                    temp = temp + now_team[role[0]] * 1
+            self.matching_rate.append(temp)
+        
+        big = 0
+        for index,item in enumerate(self.matching_rate):
+            if(self.matching_rate[big] < item):
+                big = index
+        return self.teams[big]
+    
+f = find_team()
+#######################################
+
+level = [2,2,6,10,20,36,56,80,100]
+
+class control:
+    def __init__(self):
+        self.coin = 2
+        self.target = []#[[序号，数量，core(1)/flex(0)]]下同
+        self.current = [0,0,0,0,0,0,0,0,0,0,0,
+                        0,0,0,0,0,0,0,0,0,0,
+                        0,0,0,0,0,0,0,0,0,0,
+                        0,0,0,0,0,0,0,0,0,0,
+                        0,0,0,0,0,0,0,0,0,0,
+                        0,0,0,0,0,0,0,0,0,0,]#61个0
+        self.coin_value = 4.2   #
+        self.level = 1
+
+    def renew_coin(self,coin):
+        self.coin = coin
+
+    def renew_coin_value(self,value):
+        self.coin_value = value
+
+    def upgrade(self):
+        if self.coin > level[self.level - 1]:
+            if 7 <=self.level <= 9:
+                if self.coin - level[self.level - 1] >= 40:
+                    self.coin = self.coin - level[self.level - 1]
+                    self.level = self.level + 1
+                    return 1
+
+            elif self.level < 7:
+                if self.level <= 3:
+                    if self.coin - level[self.level - 1] > 0:
+                        self.coin = self.coin - level[self.level - 1]
+                        self.level = self.level + 1
+                        return 1
+                    else:
+                        if self.coin - level[self.level - 1] >= 10:
+                            self.coin = self.coin - level[self.level - 1]
+                            self.level = self.level + 1
+                            return 1
+            return 0
+
+    def add_buyed_hero(self,buy):#buy = [序号，]
+        for num in buy:
+            self.current[num] = self.current[num] + 1
+            
+    
+    def sell_hero(self,sold_num):#sold_num为单个序号
+        self.current[sold_num] = self.current[sold_num] - 1
+
+
+    def add_target(self):
+        self.target = f.find_best_match(self.current)
+
+
+    def sort_best(self,shop):#选择牌与刷新,升级->选牌->刷新#shop = [序号,]
+        choice = [0,0,0,0,0]
+        values = []
+        i = 0
+        while i < 32:
+            ########
+            temp_value = 0.0
+            temp_coin = self.coin
+            temp_team = self.current
+            for index,item in enumerate(shop):
+                if choice[index] == 1:
+                    temp_coin = temp_coin - Heros[item].get_cost()
+                    self.current[item] = self.current[item] + 1
+            temp_relation = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]#30个0
+            total = 0
+            for index,item in enumerate(self.current):
+                if item > 0:
+                    total = total + 1
+                    for relation in Heros[index].synergies:
+                        temp_relation[relation] = temp_relation[relation] + 1
+                    if item >= 9:
+                        temp_value = temp_value + Heros[index].rate * 9 + 36.0
+                    elif item < 9 and item >= 6:
+                        temp_value = temp_value + Heros[index].rate * item + 18.0
+                    elif item < 6 and item >= 3:
+                        temp_value = temp_value + Heros[index].rate * item +  8.0
+                    else:
+                        temp_value = temp_value + Heros[index].rate * item
+            for index,item in enumerate(temp_relation):
+                if item >= synergy_manager.synergies[index].stages[0]:
+                    for i in range(len(synergy_manager.synergies[index].stages) - 1, -1, -1):
+                        if item >= synergy_manager.synergies[index].stages[i]:
+                            temp_value = temp_value + synergy_manager.synergies[index].rate[i] * 4 + 6.0
+            temp_value = temp_value + temp_coin * self.coin_value
+            ##########
+            values.append(temp_value)
+            ########
+            i = i + 1
+            tap = 1
+            choice[4] = tap ^ choice[4]
+            tap = tap & choice[4]
+            choice[3] = tap ^ choice[3]
+            tap = tap & choice[3]
+            choice[2] = tap ^ choice[2]
+            tap = tap & choice[2]
+            choice[1] = tap ^ choice[1]
+            tap = tap & choice[1]
+            choice[0] = tap ^ choice[0]
+            tap = tap & choice[0]
+        #######
+        big = 0
+        for index,item in enumerate(values):
+            if(values[big] < item):
+                big = index
+        if big >= 16:
+            choice[0] = 1
+            big = big - 16
+        else:
+            choice[0] = 0
+        if big >= 8:
+            choice[1] = 1
+            big = big - 8
+        else:
+            choice[1] = 0
+        if big >= 4:
+            choice[2] = 1
+            big = big - 4
+        else:
+            choice[2] = 0
+        if big >= 2:
+            choice[3] = 1
+            big = big - 2
+        else:
+            choice[3] = 0
+        if big >= 1:
+            choice[4] = 1
+            big = big - 1
+        else:
+            choice[4] = 0
+        return choice
+        
+
