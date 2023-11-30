@@ -64,7 +64,9 @@ def show_images(cards, recommended_positions):
     # 进入tkinter的主循环
     window.mainloop()
 
-
+"""
+这里是测试样例
 cards = [1, 2, 3, 4, 5]
 recommended_positions = [(0, 0), (0, 1), (0, 2), (0, 3)]
 show_images(cards, recommended_positions)
+"""
