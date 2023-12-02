@@ -1360,6 +1360,7 @@ class control:
     
     def sell_hero(self,sold_num):#sold_num为单个序号
         self.current[sold_num] = self.current[sold_num] - 1
+        self.coin = self.coin + Heros[sold_num].get_cost()
 
 
     def add_target(self):
