@@ -1,3 +1,4 @@
+import statistics
 import battle_array
 from battle_array import *
 import pyautogui
