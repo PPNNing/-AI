@@ -317,7 +317,7 @@ synergy10.add_stage([3,5,7,10])
 synergy10.add_rate([4.20,4.39,4.41,1.18])
 synergy_manager.add_synergy(synergy10)
 synergy11 = Synergy("Synergy11")
-synergy11.add_hero([3,5,7,10])
+synergy11.add_stage([3,5,7,10])
 synergy11.add_rate([4.77,4.66,4.08,1.20])
 synergy_manager.add_synergy(synergy11)
 synergy12 = Synergy("Synergy12")
@@ -385,12 +385,12 @@ synergy27.add_stage([2,4,6])
 synergy27.add_rate([4.14,4.19,4.75])
 synergy_manager.add_synergy(synergy27)
 synergy28 = Synergy("Synergy28")
-synergy28.add_stage({2,4,6})
+synergy28.add_stage([2,4,6])
 synergy28.add_rate([4.27,4.03,4.16])
 synergy_manager.add_synergy(synergy28)
 synergy29 = Synergy("Synergy29")
-synergy29.add_stage({1})
-synergy29.add_rate({4.72})
+synergy29.add_stage([1])
+synergy29.add_rate([4.72])
 hero_attributes_1 = {
     "health" : [500,900,1620],
     "defense" : [15,15,15],
@@ -1458,9 +1458,21 @@ Synergies = [synergy1,synergy1,synergy2,synergy3,synergy4,synergy5,synergy6,syne
              synergy21,synergy22,synergy23,synergy24,synergy25,synergy26,synergy27,synergy28,synergy29]
 ############################
 #########################
-team1 = [[4,3,1],[12,3,1],[25,3,1],[21,3,1],[34,3,1],[28,3,1],[36,3,1],[58,3,0],] #[[序号，数量，core(1)/flex(0)],]
-team2 = [[]]
-team3 = [[]]
+team1 = [[4,3,1],[12,3,1],[25,3,1],[21,3,1],[34,3,1],[28,3,1],[36,3,1],[58,3,0]] #[[序号，数量，core(1)/flex(0)],]
+team2 = [[4,3,1],[12,3,1],[25,3,1],[34,3,1],[36,3,1],[21,3,0],[28,3,0],[55,3,0]]
+team3 = [[9,3,1],[29,3,1],[35,3,1],[39,3,1],[27,3,1],[37,3,1],[51,3,1],[60,3,0]]
+team4 = [[3,3,1],[12,3,1],[18,3,1],[36,3,1],[50,3,1],[59,3,1],[4,3,0],[38,3,0]] #[[序号，数量，core(1)/flex(0)],]
+team5 = [[12,3,1],[22,3,1],[34,3,1],[36,3,1],[47,3,1],[46,3,1],[4,3,0],[21,3,0]]
+team6 = [[8,3,1],[10,3,1],[19,3,1],[17,3,1],[29,3,1],[36,3,0],[37,3,0],[51,3,0]]
+team7 = [[1,3,1],[4,3,1],[12,3,1],[34,3,1],[36,3,1],[47,3,1],[29,3,0],[33,3,0]] #[[序号，数量，core(1)/flex(0)],]
+team8 = [[4,3,1],[12,3,1],[25,3,1],[21,3,1],[34,3,1],[28,3,1],[36,3,1],[58,3,0]]
+team9 = [[4,3,1],[12,3,1],[25,3,1],[21,3,1],[34,3,1],[28,3,1],[36,3,1],[58,3,0]]
+team10 = [[4,3,1],[12,3,1],[25,3,1],[21,3,1],[34,3,1],[28,3,1],[36,3,1],[58,3,0]] #[[序号，数量，core(1)/flex(0)],]
+team11 = [[4,3,1],[12,3,1],[25,3,1],[21,3,1],[34,3,1],[28,3,1],[36,3,1],[58,3,0]]
+team12 = [[4,3,1],[12,3,1],[25,3,1],[21,3,1],[34,3,1],[28,3,1],[36,3,1],[58,3,0]]
+team13 = [[4,3,1],[12,3,1],[25,3,1],[21,3,1],[34,3,1],[28,3,1],[36,3,1],[58,3,0]] #[[序号，数量，core(1)/flex(0)],]
+team14 = [[4,3,1],[12,3,1],[25,3,1],[21,3,1],[34,3,1],[28,3,1],[36,3,1],[58,3,0]]
+team15 = [[4,3,1],[12,3,1],[25,3,1],[21,3,1],[34,3,1],[28,3,1],[36,3,1],[58,3,0]]
 class find_team:
     def __init__(self):
         self.teams = [team1,team2,team3]
@@ -1555,8 +1567,8 @@ class control:
     def sort_best(self,shop):#选择牌与刷新,升级->选牌->刷新#shop = [序号,]
         choice = [0,0,0,0,0]
         values = []
-        i = 0
-        while i < 32:
+        ii = 0
+        while ii < 32:
             ########
             temp_value = 0.0
             temp_coin = self.coin
@@ -1583,26 +1595,32 @@ class control:
                     else:
                         temp_value = temp_value + (9-Heros[index].rate) * item
             for index,item in enumerate(temp_relation):
-                if item >= Synergies[index].stages[0]:
-                    for i in range(len(Synergies[index].stages) - 1, -1, -1):
-                        if item >= (Synergies[index].stages[i]):
-                            temp_value = temp_value + (9-Synergies[index].rate[i]) * 4 + 6.0
+                if index < len(Synergies) and len(Synergies[index].stages) > 0:
+                    if item >= Synergies[index].stages[0]:
+                        for i in range(len(Synergies[index].stages) - 1, -1,-1):
+                            if item >= (Synergies[index].stages[i]):
+                                temp_value = temp_value + (9-Synergies[index].rate[i]) * 4 + 6.0
             temp_value = temp_value + temp_coin * self.coin_value
             ##########
             values.append(temp_value)
             ########
-            i = i + 1
+            ii = ii + 1
             tap = 1
+            tt = choice[4]
             choice[4] = tap ^ choice[4]
-            tap = tap & choice[4]
+            tap = tap & tt
+            tt = choice[3]
             choice[3] = tap ^ choice[3]
-            tap = tap & choice[3]
+            tap = tap & tt
+            tt = choice[2]
             choice[2] = tap ^ choice[2]
-            tap = tap & choice[2]
+            tap = tap & tt
+            tt = choice[1]
             choice[1] = tap ^ choice[1]
-            tap = tap & choice[1]
+            tap = tap & tt
+            tt = choice[0]
             choice[0] = tap ^ choice[0]
-            tap = tap & choice[0]
+            tap = tap & tt
         #######
         big = 0
         for index,item in enumerate(values):
