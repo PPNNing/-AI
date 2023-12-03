@@ -48,10 +48,10 @@ class Synergy:
             self.heroes.append(hero)
     
     def add_stage(self,stage):
-        self.stages.append(stage)
+        self.stages = stage
 
     def add_rate(self,rate):
-        self.rate.append(rate)
+        self.rate = rate
     
     def check_stage(self):
         active_stages = []
@@ -1453,9 +1453,12 @@ Heros = [hero1,hero1,hero2,hero3,hero4,hero5,hero6,hero7,hero8,hero9,hero10,
          hero31,hero32,hero33,hero34,hero35,hero36,hero37,hero38,hero39,hero40,
          hero41,hero42,hero43,hero44,hero45,hero46,hero47,hero48,hero49,hero50,
          hero51,hero52,hero53,hero54,hero55,hero56,hero57,hero58,hero59,hero60]
+Synergies = [synergy1,synergy1,synergy2,synergy3,synergy4,synergy5,synergy6,synergy7,synergy8,synergy9,synergy10,
+             synergy11,synergy12,synergy13,synergy14,synergy15,synergy16,synergy17,synergy18,synergy19,synergy20,
+             synergy21,synergy22,synergy23,synergy24,synergy25,synergy26,synergy27,synergy28,synergy29]
 ############################
 #########################
-team1 = [[]] #[[序号，数量，core(1)/flex(0)],]
+team1 = [[4,3,1],[12,3,1],[25,3,1],[21,3,1],[34,3,1],[28,3,1],[36,3,1],[58,3,0],] #[[序号，数量，core(1)/flex(0)],]
 team2 = [[]]
 team3 = [[]]
 class find_team:
@@ -1497,6 +1500,17 @@ class control:
         self.coin_value = 4.2   #
         self.level = 1
 
+    def get_current(self):
+        ans = []
+        for i,role in enumerate(self.current):
+            if role > 0:
+                temp = []
+                temp.append(i)
+                temp.append(role)
+                ans.append(temp)
+        return ans
+
+
     def renew_coin(self,coin):
         self.coin = coin
 
@@ -1522,7 +1536,7 @@ class control:
                             self.coin = self.coin - level[self.level - 1]
                             self.level = self.level + 1
                             return 1
-            return 0
+        return 0
 
     def add_buyed_hero(self,buy):#buy = [序号，]
         for num in buy:
@@ -1551,7 +1565,9 @@ class control:
                 if choice[index] == 1:
                     temp_coin = temp_coin - Heros[item].get_cost()
                     self.current[item] = self.current[item] + 1
-            temp_relation = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]#30个0
+            temp_relation = [0,0,0,0,0,0,0,0,0,0,
+                             0,0,0,0,0,0,0,0,0,0,
+                             0,0,0,0,0,0,0,0,0,0]#30个0
             total = 0
             for index,item in enumerate(self.current):
                 if item > 0:
@@ -1559,18 +1575,18 @@ class control:
                     for relation in Heros[index].synergies:
                         temp_relation[relation] = temp_relation[relation] + 1
                     if item >= 9:
-                        temp_value = temp_value + Heros[index].rate * 9 + 36.0
+                        temp_value = temp_value + (9-Heros[index].rate) * 9 + 36.0
                     elif item < 9 and item >= 6:
-                        temp_value = temp_value + Heros[index].rate * item + 18.0
+                        temp_value = temp_value + (9-Heros[index].rate) * item + 18.0
                     elif item < 6 and item >= 3:
-                        temp_value = temp_value + Heros[index].rate * item +  8.0
+                        temp_value = temp_value + (9-Heros[index].rate) * item +  8.0
                     else:
-                        temp_value = temp_value + Heros[index].rate * item
+                        temp_value = temp_value + (9-Heros[index].rate) * item
             for index,item in enumerate(temp_relation):
-                if item >= synergy_manager.synergies[index].stages[0]:
-                    for i in range(len(synergy_manager.synergies[index].stages) - 1, -1, -1):
-                        if item >= synergy_manager.synergies[index].stages[i]:
-                            temp_value = temp_value + synergy_manager.synergies[index].rate[i] * 4 + 6.0
+                if item >= Synergies[index].stages[0]:
+                    for i in range(len(Synergies[index].stages) - 1, -1, -1):
+                        if item >= (Synergies[index].stages[i]):
+                            temp_value = temp_value + (9-Synergies[index].rate[i]) * 4 + 6.0
             temp_value = temp_value + temp_coin * self.coin_value
             ##########
             values.append(temp_value)
@@ -1618,5 +1634,4 @@ class control:
         else:
             choice[4] = 0
         return choice
-        
-
+   
