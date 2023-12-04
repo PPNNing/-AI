@@ -1509,7 +1509,7 @@ class control:
                         0,0,0,0,0,0,0,0,0,0,
                         0,0,0,0,0,0,0,0,0,0,
                         0,0,0,0,0,0,0,0,0,0,]#61个0
-        self.coin_value = 4.2   #
+        self.coin_value = 2.2   #
         self.level = 1
 
     def get_current(self):
@@ -1565,67 +1565,64 @@ class control:
 
 
     def sort_best(self,shop):#选择牌与刷新,升级->选牌->刷新#shop = [序号,]
-        choice = [0,0,0,0,0]
+        choices = [[0,0,0,0,0],[0,0,0,0,1],[0,0,0,1,0],[0,0,0,1,1],[0,0,1,0,0],[0,0,1,0,1],[0,0,1,1,0],[0,0,1,1,1],
+                   [0,1,0,0,0],[0,1,0,0,1],[0,1,0,1,0],[0,1,0,1,1],[0,1,1,0,0],[0,1,1,0,1],[0,1,1,1,0],[0,1,1,1,1],
+                   [1,0,0,0,0],[1,0,0,0,1],[1,0,0,1,0],[1,0,0,1,1],[1,0,1,0,0],[1,0,1,0,1],[1,0,1,1,0],[1,0,1,1,1],
+                   [1,1,0,0,0],[1,1,0,0,1],[1,1,0,1,0],[1,1,0,1,1],[1,1,1,0,0],[1,1,1,0,1],[1,1,1,1,0],[1,1,1,1,1],[0,0,0,0,0]]
+        
         values = []
         ii = 0
+        choice = choices[ii]
         while ii < 32:
             ########
             temp_value = 0.0
             temp_coin = self.coin
-            temp_team = self.current
+            temp_team = self.current[:]
             for index,item in enumerate(shop):
                 if choice[index] == 1:
                     temp_coin = temp_coin - Heros[item].get_cost()
-                    self.current[item] = self.current[item] + 1
+                    temp_team[item] = temp_team[item] + 1
             temp_relation = [0,0,0,0,0,0,0,0,0,0,
                              0,0,0,0,0,0,0,0,0,0,
                              0,0,0,0,0,0,0,0,0,0]#30个0
             total = 0
-            for index,item in enumerate(self.current):
-                if item > 0:
+            for index1,item1 in enumerate(temp_team):
+                if item1 > 0:
                     total = total + 1
                     for relation in Heros[index].synergies:
                         temp_relation[relation] = temp_relation[relation] + 1
-                    if item >= 9:
-                        temp_value = temp_value + (9-Heros[index].rate) * 9 + 36.0
-                    elif item < 9 and item >= 6:
-                        temp_value = temp_value + (9-Heros[index].rate) * item + 18.0
-                    elif item < 6 and item >= 3:
-                        temp_value = temp_value + (9-Heros[index].rate) * item +  8.0
+                    if item1 >= 9:
+                        temp_value = temp_value + Heros[index1].rate * Heros[index1].rate * 9 + 36.0
+                    elif item1 < 9 and item1 >= 6:
+                        temp_value = temp_value + Heros[index1].rate * Heros[index1].rate * item1 + 18.0
+                    elif item1 < 6 and item1 >= 3:
+                        temp_value = temp_value + Heros[index1].rate * Heros[index1].rate * item1 +  8.0
                     else:
-                        temp_value = temp_value + (9-Heros[index].rate) * item
-            for index,item in enumerate(temp_relation):
-                if index < len(Synergies) and len(Synergies[index].stages) > 0:
-                    if item >= Synergies[index].stages[0]:
-                        for i in range(len(Synergies[index].stages) - 1, -1,-1):
-                            if item >= (Synergies[index].stages[i]):
-                                temp_value = temp_value + (9-Synergies[index].rate[i]) * 4 + 6.0
+                        temp_value = temp_value + Heros[index1].rate * Heros[index1].rate * item1
+            for index2,item2 in enumerate(temp_relation):
+                if index2 < len(Synergies) and len(Synergies[index2].stages) > 0:
+                    if item2 >= Synergies[index2].stages[0]:
+                        for i in range(len(Synergies[index2].stages) - 1, -1,-1):
+                            if item2 >= (Synergies[index2].stages[i]):
+                                temp_value = temp_value + Synergies[index2].rate[i] * Synergies[index2].rate[i]* 4 + 6.0
             temp_value = temp_value + temp_coin * self.coin_value
             ##########
-            values.append(temp_value)
+            if temp_coin >= 0:
+                values.append(temp_value)
+            else:
+                values.append(0)
             ########
             ii = ii + 1
-            tap = 1
-            tt = choice[4]
-            choice[4] = tap ^ choice[4]
-            tap = tap & tt
-            tt = choice[3]
-            choice[3] = tap ^ choice[3]
-            tap = tap & tt
-            tt = choice[2]
-            choice[2] = tap ^ choice[2]
-            tap = tap & tt
-            tt = choice[1]
-            choice[1] = tap ^ choice[1]
-            tap = tap & tt
-            tt = choice[0]
-            choice[0] = tap ^ choice[0]
-            tap = tap & tt
+            choice = choices[ii]
         #######
         big = 0
-        for index,item in enumerate(values):
-            if(values[big] < item):
-                big = index
+        for index3,item3 in enumerate(values):
+            if(values[big] < item3):
+                big = index3
+        ##########
+        test = big
+        #########
+        choice = [0,0,0,0,0]
         if big >= 16:
             choice[0] = 1
             big = big - 16
@@ -1651,5 +1648,5 @@ class control:
             big = big - 1
         else:
             choice[4] = 0
-        return choice
+        return test,values,choice,self.current
    
