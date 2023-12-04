@@ -1620,7 +1620,7 @@ class control:
             if(values[big] < item3):
                 big = index3
         ##########
-        test = big
+        #test = big
         #########
         choice = [0,0,0,0,0]
         if big >= 16:
@@ -1648,5 +1648,5 @@ class control:
             big = big - 1
         else:
             choice[4] = 0
-        return test,values,choice,self.current
+        return choice
    
