@@ -79,9 +79,10 @@ class SynergyManager:
         return ", ".join([synergy.name for synergy in self.synergies])
 
 class Low_Weapon:
-    def __init__(self,name):
+    def __init__(self,name,number):
         self.name=name
         self.father= []
+        self.number=number
     
     def add_Father(self, father):
         if father not in self.father:
@@ -90,9 +91,11 @@ class Low_Weapon:
 
 
 class High_Weapon:
-    def __init__(self,name):
+    def __init__(self,name,number):
         self.name=name
         self.child= []
+        self.number=number
+
     def add_child(self,child):
         if child not in self.child:
             self.child.append(child)
@@ -133,7 +136,7 @@ class array:
         self.hero_weapon_recommendations[hero] = weapons
 
     def get_weapon_recommendation(self,hero):
-        return self.hero_weapon_recommendations.get(hero,None)
+        return self.hero_weapon_recommendations.get(hero,[])
     
     def weapon_recommend(self,weapons):
         self.weapon_recommendations = weapons
@@ -142,60 +145,60 @@ synergy_manager = SynergyManager()
 
 weapon_manager = WeaponManager()
 
-l_weapon1 = Low_Weapon("Low_weapon1")
-l_weapon2 = Low_Weapon("Low_weapon2")
-l_weapon3 = Low_Weapon("Low_weapon3")
-l_weapon4 = Low_Weapon("Low_weapon4")
-l_weapon5 = Low_Weapon("Low_weapon5")
-l_weapon6 = Low_Weapon("Low_weapon6")
-l_weapon7 = Low_Weapon("Low_weapon7")
-l_weapon8 = Low_Weapon("Low_weapon8")
-l_weapon9 = Low_Weapon("Low_weapon9")
-h_weapon1 = High_Weapon("High_weapon1")
-h_weapon2 = High_Weapon("High_weapon2")
-h_weapon3 = High_Weapon("High_weapon3")
-h_weapon4 = High_Weapon("High_weapon4")
-h_weapon5 = High_Weapon("High_weapon5")
-h_weapon6 = High_Weapon("High_weapon6")
-h_weapon7 = High_Weapon("High_weapon7")
-h_weapon8 = High_Weapon("High_weapon8")
-h_weapon9 = High_Weapon("High_weapon9")
-h_weapon10 = High_Weapon("High_weapon10")
-h_weapon11 = High_Weapon("High_weapon11")
-h_weapon12 = High_Weapon("High_weapon12")
-h_weapon13 = High_Weapon("High_weapon13")
-h_weapon14 = High_Weapon("High_weapon14")
-h_weapon15 = High_Weapon("High_weapon15")
-h_weapon16 = High_Weapon("High_weapon16")
-h_weapon17 = High_Weapon("High_weapon17")
-h_weapon18 = High_Weapon("High_weapon18")
-h_weapon19 = High_Weapon("High_weapon19")
-h_weapon20 = High_Weapon("High_weapon20")
-h_weapon21 = High_Weapon("High_weapon21")
-h_weapon22 = High_Weapon("High_weapon22")
-h_weapon23 = High_Weapon("High_weapon23")
-h_weapon24 = High_Weapon("High_weapon24")
-h_weapon25 = High_Weapon("High_weapon25")
-h_weapon26 = High_Weapon("High_weapon26")
-h_weapon27 = High_Weapon("High_weapon27")
-h_weapon28 = High_Weapon("High_weapon28")
-h_weapon29 = High_Weapon("High_weapon29")
-h_weapon30 = High_Weapon("High_weapon30")
-h_weapon31 = High_Weapon("High_weapon31")
-h_weapon32 = High_Weapon("High_weapon32")
-h_weapon33 = High_Weapon("High_weapon33")
-h_weapon34 = High_Weapon("High_weapon34")
-h_weapon35 = High_Weapon("High_weapon35")
-h_weapon36 = High_Weapon("High_weapon36")
-h_weapon37 = High_Weapon("High_weapon37")
-h_weapon38 = High_Weapon("High_weapon38")
-h_weapon39 = High_Weapon("High_weapon39")
-h_weapon40 = High_Weapon("High_weapon40")
-h_weapon41 = High_Weapon("High_weapon41")
-h_weapon42 = High_Weapon("High_weapon42")
-h_weapon43 = High_Weapon("High_weapon43")
-h_weapon44 = High_Weapon("High_weapon44")
-h_weapon45 = High_Weapon("High_weapon45")
+l_weapon1 = Low_Weapon("Low_weapon1",1)
+l_weapon2 = Low_Weapon("Low_weapon2",2)
+l_weapon3 = Low_Weapon("Low_weapon3",3)
+l_weapon4 = Low_Weapon("Low_weapon4",4)
+l_weapon5 = Low_Weapon("Low_weapon5",5)
+l_weapon6 = Low_Weapon("Low_weapon6",6)
+l_weapon7 = Low_Weapon("Low_weapon7",7)
+l_weapon8 = Low_Weapon("Low_weapon8",8)
+l_weapon9 = Low_Weapon("Low_weapon9",9)
+h_weapon1 = High_Weapon("High_weapon1",1)
+h_weapon2 = High_Weapon("High_weapon2",2)
+h_weapon3 = High_Weapon("High_weapon3",3)
+h_weapon4 = High_Weapon("High_weapon4",4)
+h_weapon5 = High_Weapon("High_weapon5",5)
+h_weapon6 = High_Weapon("High_weapon6",6)
+h_weapon7 = High_Weapon("High_weapon7",7)
+h_weapon8 = High_Weapon("High_weapon8",8)
+h_weapon9 = High_Weapon("High_weapon9",9)
+h_weapon10 = High_Weapon("High_weapon10",10)
+h_weapon11 = High_Weapon("High_weapon11",11)
+h_weapon12 = High_Weapon("High_weapon12",12)
+h_weapon13 = High_Weapon("High_weapon13",13)
+h_weapon14 = High_Weapon("High_weapon14",14)
+h_weapon15 = High_Weapon("High_weapon15",15)
+h_weapon16 = High_Weapon("High_weapon16",16)
+h_weapon17 = High_Weapon("High_weapon17",17)
+h_weapon18 = High_Weapon("High_weapon18",18)
+h_weapon19 = High_Weapon("High_weapon19",19)
+h_weapon20 = High_Weapon("High_weapon20",20)
+h_weapon21 = High_Weapon("High_weapon21",21)
+h_weapon22 = High_Weapon("High_weapon22",22)
+h_weapon23 = High_Weapon("High_weapon23",23)
+h_weapon24 = High_Weapon("High_weapon24",24)
+h_weapon25 = High_Weapon("High_weapon25",25)
+h_weapon26 = High_Weapon("High_weapon26",26)
+h_weapon27 = High_Weapon("High_weapon27",27)
+h_weapon28 = High_Weapon("High_weapon28",28)
+h_weapon29 = High_Weapon("High_weapon29",29)
+h_weapon30 = High_Weapon("High_weapon30",30)
+h_weapon31 = High_Weapon("High_weapon31",31)
+h_weapon32 = High_Weapon("High_weapon32",32)
+h_weapon33 = High_Weapon("High_weapon33",33)
+h_weapon34 = High_Weapon("High_weapon34",34)
+h_weapon35 = High_Weapon("High_weapon35",35)
+h_weapon36 = High_Weapon("High_weapon36",36)
+h_weapon37 = High_Weapon("High_weapon37",37)
+h_weapon38 = High_Weapon("High_weapon38",38)
+h_weapon39 = High_Weapon("High_weapon39",39)
+h_weapon40 = High_Weapon("High_weapon40",40)
+h_weapon41 = High_Weapon("High_weapon41",41)
+h_weapon42 = High_Weapon("High_weapon42",42)
+h_weapon43 = High_Weapon("High_weapon43",43)
+h_weapon44 = High_Weapon("High_weapon44",44)
+h_weapon45 = High_Weapon("High_weapon45",45)
 l_weapon1.add_Father(h_weapon1)
 l_weapon1.add_Father(h_weapon2)
 l_weapon1.add_Father(h_weapon3)
@@ -1650,3 +1653,51 @@ class control:
             choice[4] = 0
         return choice
    
+def get_high(x):
+    h_list=[]
+    if f == team1:
+        for i in array1.get_weapon_recommendation(Heros[x]):
+            h_list.append(i.number)
+    elif f == team2:
+        for i in array2.get_weapon_recommendation(Heros[x]):
+            h_list.append(i.number)
+    elif f == team3:
+        for i in array3.get_weapon_recommendation(Heros[x]):
+            h_list.append(i.number)
+    elif f == team4:
+        for i in array4.get_weapon_recommendation(Heros[x]):
+            h_list.append(i.number)
+    elif f == team5:
+        for i in array5.get_weapon_recommendation(Heros[x]):
+            h_list.append(i.number)
+    elif f == team6:
+        for i in array6.get_weapon_recommendation(Heros[x]):
+            h_list.append(i.number)
+    elif f == team7:
+        for i in array7.get_weapon_recommendation(Heros[x]):
+            h_list.append(i.number)
+    elif f == team8:
+        for i in array8.get_weapon_recommendation(Heros[x]):
+            h_list.append(i.number)
+    elif f == team9:
+        for i in array9.get_weapon_recommendation(Heros[x]):
+            h_list.append(i.number)
+    elif f == team10:
+        for i in array10.get_weapon_recommendation(Heros[x]):
+            h_list.append(i.number)
+    elif f == team11:
+        for i in array11.get_weapon_recommendation(Heros[x]):
+            h_list.append(i.number)
+    elif f == team12:
+        for i in array12.get_weapon_recommendation(Heros[x]):
+            h_list.append(i.number)
+    elif f == team13:
+        for i in array13.get_weapon_recommendation(Heros[x]):
+            h_list.append(i.number)
+    elif f == team14:
+        for i in array14.get_weapon_recommendation(Heros[x]):
+            h_list.append(i.number)
+    elif f == team15:
+        for i in array15.get_weapon_recommendation(Heros[x]):
+            h_list.append(i.number)
+    return h_list
