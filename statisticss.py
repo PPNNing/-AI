@@ -1554,8 +1554,7 @@ class control:
         return 0
 
     def add_buyed_hero(self,buy):#buy = [序号，]
-        for num in buy:
-            self.current[num] = self.current[num] + 1
+        self.current[buy_num] = self.current[buy_num] + 1
             
     
     def sell_hero(self,sold_num):#sold_num为单个序号
