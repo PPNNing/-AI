@@ -1702,3 +1702,51 @@ def get_high(x):
             h_list.append(i.number)
     return h_list
 
+def get_low():
+    l_list=[]
+    if f == team1:
+        for i in array1.weapon_recommendations:
+            l_list.append(i.number)
+    elif f == team2:
+        for i in array2.weapon_recommendations:
+            l_list.append(i.number)
+    elif f == team3:
+        for i in array3.weapon_recommendations:
+            l_list.append(i.number)
+    elif f == team4:
+        for i in array4.weapon_recommendations:
+            l_list.append(i.number)
+    elif f ==team5:
+        for i in array5.weapon_recommendations:
+            l_list.append(i.number)
+    elif f == team6:
+        for i in array6.weapon_recommendations:
+            l_list.append(i.number)
+    elif f == team7:
+        for i in array7.weapon_recommendations:
+            l_list.append(i.number)
+    elif f == team8:
+        for i in array8.weapon_recommendations:
+            l_list.append(i.number)
+    elif f == team9:
+        for i in array9.weapon_recommendations:
+            l_list.append(i.number)
+    elif f == team10:
+        for i in array10.weapon_recommendations:
+            l_list.append(i.number)
+    elif f == team11:
+        for i in array11.weapon_recommendations:
+            l_list.append(i.number)
+    elif f == team12:
+        for i in array12.weapon_recommendations:
+            l_list.append(i.number)
+    elif f == team13:
+        for i in array13.weapon_recommendations:
+            l_list.append(i.number)
+    elif f == team14:
+        for i in array14.weapon_recommendations:
+            l_list.append(i.number)
+    elif f == team15:
+        for i in array15.weapon_recommendations:
+            l_list.append(i.number)
+    return l_list
