@@ -2,12 +2,8 @@ import tkinter as tk  # 导入tkinter模块
 import PIL  # 导入PIL模块
 from PIL import ImageTk, Image  # 导入ImageTk模块
 import statistics
-import pyautogui
-import pygetwindow as gw
-import screenshot
 import pyscreenshot
 import card
-import re
 import number
 
 
